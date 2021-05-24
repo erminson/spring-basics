@@ -1,5 +1,7 @@
 package ru.erminson;
 
+import ru.erminson.beans.Event;
+
 public interface EventLogger {
-    void logEvent(String msg);
+    void logEvent(Event msg);
 }
