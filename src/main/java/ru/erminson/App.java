@@ -2,6 +2,7 @@ package ru.erminson;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.erminson.beans.Event;
 
 public class App {
     final private Client client;
@@ -12,9 +13,10 @@ public class App {
         this.eventLogger = eventLogger;
     }
 
-    public void logEvent(String msg) {
+    public void logEvent(Event event, String msg) {
         String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(message);
+        event.setMsg(message);
+        eventLogger.logEvent(event);
     }
 
     public static void main(String[] args) {
@@ -22,7 +24,10 @@ public class App {
 
         App app = (App) ctx.getBean("app");
 
-        app.logEvent("Some event for 1");
-        app.logEvent("Some event for 2");
+        Event event = (Event) ctx.getBean("event");
+        app.logEvent(event, "Some event for 1");
+
+        event = (Event) ctx.getBean("event");
+        app.logEvent(event,"Some event for 2");
     }
 }
