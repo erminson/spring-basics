@@ -1,6 +1,6 @@
 package ru.erminson;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.erminson.beans.Client;
 import ru.erminson.beans.Event;
@@ -22,7 +22,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         App app = (App) ctx.getBean("app");
 
@@ -31,5 +31,6 @@ public class App {
 
         event = (Event) ctx.getBean("event");
         app.logEvent(event,"Some event for 2");
+        ctx.close();
     }
 }
