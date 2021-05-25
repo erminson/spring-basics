@@ -3,16 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="eventLogger" class="ru.erminson.loggers.ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="ru.erminson.loggers.ConsoleEventLogger"/>
 
-    <bean id="fileLogger" class="ru.erminson.loggers.FileEventLogger" init-method="init">
+    <bean id="fileEventLogger" class="ru.erminson.loggers.FileEventLogger" init-method="init">
         <constructor-arg value="target/events_log"/>
     </bean>
 
     <bean id="cacheFileEventLogger"
           class="ru.erminson.loggers.CacheFileEventLogger"
-          parent="fileLogger"
+          parent="fileEventLogger"
           destroy-method="destroy">
         <constructor-arg value="3"/>
+    </bean>
+
+    <bean id="combineEventLogger" class="ru.erminson.loggers.CombineEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
     </bean>
 </beans>

@@ -8,11 +8,18 @@
     <bean id="client" class="ru.erminson.beans.Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="John Smith"/>
+        <property name="greeting" value="Hello there!"/>
      </bean>
 
     <bean id="app" class="ru.erminson.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combineEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
     <bean id="event" class="ru.erminson.beans.Event" scope="prototype">
