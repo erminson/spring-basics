@@ -3,21 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+    <import resource="loggers.xml"/>
     <bean id="client" class="ru.erminson.beans.Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="John Smith"/>
      </bean>
-
-    <bean id="eventLogger" class="ru.erminson.loggers.ConsoleEventLogger"/>
-
-    <bean id="fileEventLogger" class="ru.erminson.loggers.FileEventLogger" init-method="init">
-        <constructor-arg value="target/events_log"/>
-    </bean>
-
-    <bean id="cacheFileEventLogger" class="ru.erminson.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
-        <constructor-arg value="target/events_log2"/>
-        <constructor-arg value="3"/>
-    </bean>
 
     <bean id="app" class="ru.erminson.App">
         <constructor-arg ref="client"/>
