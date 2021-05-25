@@ -1,4 +1,4 @@
-package ru.erminson;
+package ru.erminson.beans;
 
 public class Client {
     private String id;
