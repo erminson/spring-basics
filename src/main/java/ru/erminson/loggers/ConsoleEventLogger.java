@@ -1,4 +1,4 @@
-package ru.erminson;
+package ru.erminson.loggers;
 
 import ru.erminson.beans.Event;
 

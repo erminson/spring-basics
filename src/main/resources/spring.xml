@@ -8,7 +8,7 @@
         <constructor-arg index="1" value="John Smith"/>
      </bean>
 
-    <bean id="eventLogger" class="ru.erminson.ConsoleEventLogger"/>
+    <bean id="eventLogger" class="ru.erminson.loggers.ConsoleEventLogger"/>
 
     <bean id="app" class="ru.erminson.App">
         <constructor-arg ref="client"/>

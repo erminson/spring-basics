@@ -3,6 +3,7 @@ package ru.erminson;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.erminson.beans.Event;
+import ru.erminson.loggers.EventLogger;
 
 public class App {
     final private Client client;
